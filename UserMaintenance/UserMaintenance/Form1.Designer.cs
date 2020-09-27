@@ -32,6 +32,7 @@
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.lblFullName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.writeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -69,11 +70,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // writeBtn
+            // 
+            this.writeBtn.Location = new System.Drawing.Point(337, 141);
+            this.writeBtn.Name = "writeBtn";
+            this.writeBtn.Size = new System.Drawing.Size(274, 35);
+            this.writeBtn.TabIndex = 4;
+            this.writeBtn.Text = "button2";
+            this.writeBtn.UseVisualStyleBackColor = true;
+            this.writeBtn.Click += new System.EventHandler(this.writeBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 358);
+            this.Controls.Add(this.writeBtn);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.txtFullName);
@@ -91,6 +103,7 @@
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button writeBtn;
     }
 }
 
