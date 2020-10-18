@@ -17,6 +17,7 @@ namespace irf_week06
     public partial class Form1 : Form
     {
         private BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<String> currencies;
         ComboBox box;
         DateTimePicker startDate;
         DateTimePicker endDate;
@@ -25,6 +26,7 @@ namespace irf_week06
         public Form1()
         {
             InitializeComponent();
+            currencies = getCurrencies();
             startDatePicker.Value = DateTime.Today.AddDays(-30);
             endDate.Value = DateTime.Now;
             RefreshData();
@@ -39,8 +41,29 @@ namespace irf_week06
             var result = getSoapClient(currencyBox.SelectedItem.ToString(), startDatePicker.Value.ToString(), endDatePicker.Value.ToString());
             DataGridView view = new DataGridView();
             view.DataSource = Rates;
+            currencyBox.DataSource = currencies;
             parseXML(result);
             showDataOnChart();
+        }
+
+        private BindingList<String> getCurrencies()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+
+            var request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = currency,
+                startDate = startDate,
+                endDate = endDate
+            };
+
+            // Ebben az esetben a "var" a GetExchangeRates visszatérési értékéből kapja a típusát.
+            // Ezért a response változó valójában GetExchangeRatesResponseBody típusú.
+            var response = mnbService.GetExchangeRates(request);
+
+            // Ebben az esetben a "var" a GetExchangeRatesResult property alapján kapja a típusát.
+            // Ezért a result változó valójában string típusú.
+            var result = response.GetExchangeRatesResult;
         }
 
         private void showDataOnChart()
@@ -99,7 +122,7 @@ namespace irf_week06
             // Jelen példa első sora tehát ekvivalens azzal, ha a "var" helyélre a MNBArfolyamServiceSoapClient-t írjuk.
             // Ebben a formában azonban olvashatóbb a kód, és változtatás esetén elég egy helyen átírni az osztály típusát.
             var mnbService = new MNBArfolyamServiceSoapClient();
-
+           
             var request = new GetExchangeRatesRequestBody()
             {
                 currencyNames = currency,
