@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace irf_week06.Entities
 {
-    class RateData
+    public class RateData
     {
-        public DateTime Date;
-        public string Currency;
-        public decimal Value;
+        public DateTime Date { get; set; }
+        public string Currency { get; set; }
+        public decimal Value { get; set; }
     }
 }
