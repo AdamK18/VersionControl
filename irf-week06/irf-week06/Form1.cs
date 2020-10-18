@@ -17,16 +17,30 @@ namespace irf_week06
     public partial class Form1 : Form
     {
         private BindingList<RateData> Rates = new BindingList<RateData>();
+        ComboBox box;
+        DateTimePicker startDate;
+        DateTimePicker endDate;
+
 
         public Form1()
         {
             InitializeComponent();
-            var result = getSoapClient();
+            startDatePicker.Value = DateTime.Today.AddDays(-30);
+            endDate.Value = DateTime.Now;
+            RefreshData();
+        }
+
+        private void RefreshData()
+        {
+            box = currencyBox;
+            startDate = startDatePicker;
+            endDate = endDatePicker;
+            Rates.Clear();
+            var result = getSoapClient(currencyBox.SelectedItem.ToString(), startDatePicker.Value.ToString(), endDatePicker.Value.ToString());
             DataGridView view = new DataGridView();
             view.DataSource = Rates;
             parseXML(result);
             showDataOnChart();
-
         }
 
         private void showDataOnChart()
@@ -78,7 +92,7 @@ namespace irf_week06
             }
         }
 
-        private static string getSoapClient()
+        private static string getSoapClient(String currency, String startDate, String endDate)
         {
             // A változó deklarációk jobb oldalán a "var" egy dinamikus változó típus.
             // A "var" változó az első értékadás pillanatában a kapott érték típusát veszi fel, és később nem változtatható.
@@ -88,9 +102,9 @@ namespace irf_week06
 
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                currencyNames = currency,
+                startDate = startDate,
+                endDate = endDate
             };
 
             // Ebben az esetben a "var" a GetExchangeRates visszatérési értékéből kapja a típusát.
@@ -101,6 +115,21 @@ namespace irf_week06
             // Ezért a result változó valójában string típusú.
             var result = response.GetExchangeRatesResult;
             return result;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
