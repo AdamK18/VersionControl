@@ -22,11 +22,33 @@ namespace week07
         public Form1()
         {
             InitializeComponent();
+            setDefaults();
+        }
 
-            Population = GetPopulation(@"C:\Temp\nép.csv");
+        private void setDefaults()
+        {
+            numericUpDown1.Minimum = 2005;
+            numericUpDown1.Maximum = 2040;
+            numericUpDown1.Value = 2025;
+            textBox1.Text = @"C:\Temp\nép.csv";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Execute();
+        }
+
+        private void Execute()
+        {
+            Population = GetPopulation(textBox1.Text);
             BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
             DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            richTextBox1.Text = "";
+            Simulate();
+        }
 
+        private void Simulate()
+        {
             // Végigmegyünk a vizsgált éveken
             for (int year = 2005; year <= 2024; year++)
             {
@@ -44,6 +66,10 @@ namespace week07
                                     select x).Count();
                 Console.WriteLine(
                     string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
+                richTextBox1.AppendText("Szimulációs év: " + year +
+                    "\n\t" + "Fiúk: " + nbrOfMales +
+                    "\n\t" + "Lányok: " + nbrOfFemales + "\n\n");
+                Application.DoEvents();
             }
         }
 
@@ -147,6 +173,16 @@ namespace week07
             }
 
             return deathProb;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = @"C:\";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = ofd.FileName;
+            }
         }
     }
 }
