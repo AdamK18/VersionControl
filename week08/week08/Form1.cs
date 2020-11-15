@@ -57,6 +57,7 @@ namespace week08
                 mainPanel.Controls.Remove(oldestToy);
                 _toys.Remove(oldestToy);
             }
+            Console.WriteLine("asd");
         }
 
         private void btnSelectCar_Click(object sender, EventArgs e)
@@ -72,6 +73,15 @@ namespace week08
             };
         }
 
+        private void btnSelectPresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                BoxColor = boxColor.BackColor,
+                RibbonColor = ribbonColor.BackColor
+            };
+        }
+
         private void DisplayNext()
         {
             if (_nextToy != null)
@@ -83,6 +93,28 @@ namespace week08
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
             var button = (Button)sender;
             var colorPicker = new ColorDialog();
