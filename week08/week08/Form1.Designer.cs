@@ -35,13 +35,13 @@
             this.btnSelectCar = new System.Windows.Forms.Button();
             this.createTimer = new System.Windows.Forms.Timer(this.components);
             this.conveyorTimer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBallColor = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.button1);
+            this.mainPanel.Controls.Add(this.btnBallColor);
             this.mainPanel.Controls.Add(this.lblNext);
             this.mainPanel.Controls.Add(this.btnSelectBall);
             this.mainPanel.Controls.Add(this.btnSelectCar);
@@ -96,15 +96,15 @@
             this.conveyorTimer.Interval = 10;
             this.conveyorTimer.Tick += new System.EventHandler(this.conveyorTimer_Tick);
             // 
-            // button1
+            // btnBallColor
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.Location = new System.Drawing.Point(29, 124);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(63, 50);
-            this.button1.TabIndex = 3;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBallColor.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnBallColor.Location = new System.Drawing.Point(29, 124);
+            this.btnBallColor.Name = "btnBallColor";
+            this.btnBallColor.Size = new System.Drawing.Size(63, 50);
+            this.btnBallColor.TabIndex = 3;
+            this.btnBallColor.UseVisualStyleBackColor = false;
+            this.btnBallColor.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -129,7 +129,7 @@
         private System.Windows.Forms.Label lblNext;
         private System.Windows.Forms.Button btnSelectBall;
         private System.Windows.Forms.Button btnSelectCar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBallColor;
     }
 }
 
