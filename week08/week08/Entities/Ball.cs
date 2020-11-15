@@ -12,7 +12,7 @@ namespace week08.Entities
     {
         public Ball()
         {
-            AutoSize = true;
+            AutoSize = false;
             Width = 50;
             Height = Width;
             Paint += Ball_Paint;
