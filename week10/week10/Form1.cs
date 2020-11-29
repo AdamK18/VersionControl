@@ -83,6 +83,7 @@ namespace week10
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //asd
             gc.ResetCurrentLevel();
             gc.AddPlayer(winnerBrain.Clone());
             gc.AddPlayer();
